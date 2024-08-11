@@ -11,7 +11,14 @@ base {
 }
 
 repositories {
+	// masa
 	maven { url 'https://masa.dy.fi/maven/' }
+
+	// mod menu
+	maven {	url 'https://maven.terraformersmc.com/releases/' }
+
+	// cloth config
+	maven { url "https://maven.architectury.dev/" }
 	// Add repositories to retrieve artifacts from in here.
 	// You should only use this when depending on other mods because
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
@@ -32,6 +39,7 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	modImplementation "fi.dy.masa.malilib:malilib-fabric-${project.minecraft_version_out}:${project.malilib_version}"
+	modImplementation "me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"
 	
 }
 
