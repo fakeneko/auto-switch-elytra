@@ -18,6 +18,9 @@
 		"main": [
 			"cn.com.fakeneko.AutoSwitchElytra"
 		],
+		"client": [
+			"cn.com.fakeneko.AutoSwitchElytraClient"
+		],
 		"fabric-datagen": [
 			"cn.com.fakeneko.AutoSwitchElytraDataGenerator"
 		]
