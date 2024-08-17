@@ -1,5 +1,6 @@
 {
   "item.auto-switch-elytra.ice_ether": "Ice Ether",
   "item.auto-switch-elytra.fire_ether": "Fire Ether",
-  "block.auto-switch-elytra.example_block": "Example Block"
+  "block.auto-switch-elytra.example_block": "Example Block",
+  "block.auto-switch-elytra.ice_ether_ore": "Ice Ether Ore"
 }
