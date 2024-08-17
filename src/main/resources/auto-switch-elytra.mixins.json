@@ -3,7 +3,7 @@
 	"package": "cn.com.fakeneko.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-      "LocalPlayerMixin"
+      "MixinClientPlayerEntity"
 	],
 	"injectors": {
 		"defaultRequire": 1

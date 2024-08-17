@@ -1,22 +1,34 @@
 package cn.com.fakeneko;
 
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.client.MinecraftClient;
+
+import cn.com.fakeneko.common.conf.Configuration;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class AutoSwitchElytra implements ModInitializer {
-	// This logger is used to write text to the console and the log file.
-	// It is considered best practice to use your mod id as the logger's name.
-	// That way, it's clear which mod wrote info, warnings, and errors.
-    public static final Logger LOGGER = LoggerFactory.getLogger("auto-switch-elytra");
+public class AutoSwitchElytra implements ModInitializer
+{
+//	public static final int CHEST_SLOT = EquipmentSlot.CHEST.getIndex(Inventory.INVENTORY_SIZE);
+	private static final MinecraftClient client = MinecraftClient.getInstance();
+	public static final String MOD_ID = "auto-switch-elytra";
+	public static final Logger logger = LoggerFactory.getLogger(MOD_ID);
 
 	@Override
 	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
 
-		LOGGER.info("Hello Fabric world!");
 	}
+
+//	public static void initialise(String mod_name, String mod_version, String platform) {
+//		logger.info("{} v{} for {} successfully enabled!", mod_name, mod_version, platform);
+//		Configuration.load();
+//		Keybinds.setup();
+//	}
+//
+//	public static void sendMessage(Component component) {
+//		if (client.player == null) return;
+//		Component message = Component.literal("[AutoElytra] ").append(component);
+//		client.player.displayClientMessage(message, false);
+//	}
 }
