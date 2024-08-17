@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "auto-switch-elytra:block/example_block" }
+  }
+}

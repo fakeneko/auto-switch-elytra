@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "auto-switch-elytra:block/example_block"
+  }
+}
