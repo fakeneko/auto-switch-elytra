@@ -1,29 +1,27 @@
 package cn.com.fakeneko.block;
 
-import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import cn.com.fakeneko.AutoSwitchElytra;
 
 /**
  * @author nocturne
  * @date 2024/8/12 下午6:05
  * @description
  */
-public class BlockDemo implements ModInitializer {
+public class BlockDemo{
 
     /**
      * 创建方块
      */
-    public static final Block CREATE_BLOCK = new Block(Block.Settings.create().strength(4.0f));
+    public static final Block EXAMPLE_BLOCK = new Block(Block.Settings.create().strength(4.0f));
 
-    @Override
-    public void onInitialize() {
+    public static void onBlockInitialize() {
         // 注册方块
-        Registry.register(Registries.ITEM, Identifier.of("tutorial", "example_block"), new BlockItem(CREATE_BLOCK,
-                new Item.Settings()));
+        AutoSwitchElytra.LOGGER.info("Registry Block Start!");
+        Registry.register(Registries.BLOCK, Identifier.of(AutoSwitchElytra.MOD_ID, "example_block"), EXAMPLE_BLOCK);
+        AutoSwitchElytra.LOGGER.info("Registry Block End!");
     }
 }
