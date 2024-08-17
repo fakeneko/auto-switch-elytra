@@ -19,7 +19,7 @@ public class BlockDemo{
     /**
      * 创建方块
      */
-    public static final Block EXAMPLE_BLOCK = new Block(Block.Settings.create().strength(4.0f).pistonBehavior(PistonBehavior.BLOCK));
+    public static final Block EXAMPLE_BLOCK = new Block(Block.Settings.create().strength(4.0f));
 
     // 方块注册分两给部分，一个是方块物品，一个是方块本体
     // 将注册方块物品独立出来
