@@ -89,7 +89,7 @@ public class InventoryUtils {
     {
         ItemEnchantmentsComponent enchants = stack.getEnchantments();
 
-        if (enchants.equals(ItemEnchantmentsComponent.DEFAULT) == false)
+        if (!enchants.equals(ItemEnchantmentsComponent.DEFAULT))
         {
             Set<RegistryEntry<Enchantment>> enchantList = enchants.getEnchantments();
 
@@ -120,17 +120,16 @@ public class InventoryUtils {
      */
     private static int getSlotNumberForEquipmentType(EquipmentSlot type, PlayerEntity player)
     {
-        switch (type)
-        {
-            case MAINHAND:  return player != null ? player.getInventory().selectedSlot + 36 : -1;
-            case OFFHAND:   return 45;
-            case HEAD:      return 5;
-            case CHEST:     return 6;
-            case LEGS:      return 7;
-            case FEET:      return 8;
-        }
+        return switch (type) {
+            case MAINHAND -> player != null ? player.getInventory().selectedSlot + 36 : -1;
+            case OFFHAND -> 45;
+            case HEAD -> 5;
+            case CHEST -> 6;
+            case LEGS -> 7;
+            case FEET -> 8;
+            default -> -1;
+        };
 
-        return -1;
     }
 
     public static void swapSlots(PlayerEntity player, int slotNum, int otherSlot)
@@ -139,9 +138,9 @@ public class InventoryUtils {
         ScreenHandler container = player.currentScreenHandler;
         if (mc.interactionManager != null) {
             mc.interactionManager.clickSlot(container.syncId, slotNum, 0, SlotActionType.SWAP, player);
+            mc.interactionManager.clickSlot(container.syncId, otherSlot, 0, SlotActionType.SWAP, player);
+            mc.interactionManager.clickSlot(container.syncId, slotNum, 0, SlotActionType.SWAP, player);
         }
-        mc.interactionManager.clickSlot(container.syncId, otherSlot, 0, SlotActionType.SWAP, player);
-        mc.interactionManager.clickSlot(container.syncId, slotNum, 0, SlotActionType.SWAP, player);
     }
 
     /**
@@ -173,8 +172,7 @@ public class InventoryUtils {
         return -1;
     }
 
-    public static boolean isHotbarSlot(int slot)
-    {
+    public static boolean isHotbarSlot(int slot) {
         return slot >= 36 && slot < (36 + PlayerInventory.getHotbarSize());
     }
 
