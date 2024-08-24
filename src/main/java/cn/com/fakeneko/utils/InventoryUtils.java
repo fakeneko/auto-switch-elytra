@@ -1,4 +1,4 @@
-package cn.com.fakeneko.common.util;
+package cn.com.fakeneko.utils;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.component.type.AttributeModifierSlot;
