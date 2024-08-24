@@ -62,7 +62,7 @@ public class ModConfig {
                 .category(ConfigCategory.createBuilder()
                         .name(Text.translatable("config.auto-switch-elytra.general"))
                         .tooltip(Text.translatable("config.auto-switch-elytra.general.tooltip"))
-                        .option(Option.createBuilder(boolean.class)
+                        .option(Option.<Boolean>createBuilder()
                                 .name(Text.translatable("config.auto-switch-elytra.enabled"))
                                 .description(OptionDescription.of(Text.translatable("config.auto-switch-elytra.enabled.description")))
                                 .binding(
