@@ -7,6 +7,9 @@
 	"authors": [
 		"fakeneko"
 	],
+	"contributors": [
+
+	],
 	"contact": {
 		"sources": "https://gitee.com/fakeneko/auto-switch-elytra"
 	},
@@ -17,9 +20,6 @@
 		"main": [
 			"cn.com.fakeneko.AutoSwitchElytra"
 		],
-		"fabric-datagen": [
-			"cn.com.fakeneko.AutoSwitchElytraDataGenerator"
-		],
 		"modmenu": [
 			"cn.com.fakeneko.modmenu.ModMenuApiAutoSwitchElytra"
 		]
@@ -29,12 +29,12 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.15.11",
-		"fabric-key-binding-api-v1": "*",
 		"minecraft": "~1.21",
 		"java": ">=21",
-		"fabric-api": "*"
+		"fabric-api": "*",
+		"yet_another_config_lib_v3": ">=3.5.0"
 	},
 	"suggests": {
-		"another-mod": "*"
+		"modmenu": ">=11.0.0"
 	}
 }
