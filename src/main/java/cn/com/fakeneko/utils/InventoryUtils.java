@@ -161,9 +161,9 @@ public class InventoryUtils {
         {
             Slot slot = container.slots.get(slotNum);
 
-            if ((!isPlayerInv || fi.dy.masa.malilib.util.InventoryUtils.isRegularInventorySlot(slot.id, false)) &&
+            if ((!isPlayerInv || isRegularInventorySlot(slot.id, false)) &&
                     (allowHotbar || !isHotbarSlot(slot.id)) &&
-                    fi.dy.masa.malilib.util.InventoryUtils.areStacksEqualIgnoreDurability(slot.getStack(), stackReference))
+                    areStacksEqualIgnoreDurability(slot.getStack(), stackReference))
             {
                 return slot.id;
             }
@@ -244,5 +244,43 @@ public class InventoryUtils {
         });
 
         return total[0];
+    }
+
+    /**
+     * Assuming that the slot is from the ContainerPlayer container,
+     * returns whether the given slot number is one of the regular inventory slots.
+     * This means that the crafting slots and armor slots are not valid.
+     * @param slotNumber
+     * @param allowOffhand
+     * @return boolean
+     */
+    public static boolean isRegularInventorySlot(int slotNumber, boolean allowOffhand)
+    {
+        return slotNumber > 8 && (allowOffhand || slotNumber < 45);
+    }
+
+    /**
+     * @return true if the stacks are identical, but ignoring the stack size,
+     * and if the item is damageable, then ignoring the damage too.
+     */
+    public static boolean areStacksEqualIgnoreDurability(ItemStack stack1, ItemStack stack2)
+    {
+        ItemStack ref = stack1.copy();
+        ItemStack check = stack2.copy();
+
+        // It's a little hacky, but it works.
+        ref.setCount(1);
+        check.setCount(1);
+
+        if (ref.isDamageable() && ref.isDamaged())
+        {
+            ref.setDamage(0);
+        }
+        if (check.isDamageable() && check.isDamaged())
+        {
+            check.setDamage(0);
+        }
+
+        return ItemStack.areItemsAndComponentsEqual(ref, check);
     }
 }
