@@ -1,6 +1,7 @@
 package cn.com.fakeneko.mixin;
 
-import cn.com.fakeneko.common.util.InventoryUtils;
+import cn.com.fakeneko.config.ModConfig;
+import cn.com.fakeneko.utils.InventoryUtils;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -33,7 +34,7 @@ public abstract class MixinClientPlayerEntity extends AbstractClientPlayerEntity
                     target = "Lnet/minecraft/client/network/ClientPlayerEntity;getEquippedStack(Lnet/minecraft/entity/EquipmentSlot;)Lnet/minecraft/item/ItemStack;"))
     private void onFallFlyingCheckChestSlot(CallbackInfo ci)
     {
-        if (true)
+        if (ModConfig.INSTANCE.get_enabled_auto_switch_elytra())
         {
             // PlayerEntity#checkFallFlying
             if (!this.isOnGround() && !this.isFallFlying() && !this.isInFluid() && !this.hasStatusEffect(StatusEffects.LEVITATION))
@@ -55,7 +56,7 @@ public abstract class MixinClientPlayerEntity extends AbstractClientPlayerEntity
     @Inject(method = "onTrackedDataSet", at = @At("RETURN"))
     private void onStopFlying(TrackedData<?> data, CallbackInfo ci)
     {
-        if (true)
+        if (ModConfig.INSTANCE.get_enabled_auto_switch_elytra())
         {
             if (FLAGS.equals(data) && this.falling)
             {
