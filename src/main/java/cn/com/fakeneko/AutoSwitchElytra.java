@@ -1,5 +1,6 @@
 package cn.com.fakeneko;
 
+import cn.com.fakeneko.config.ModConfig;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,11 @@ public class AutoSwitchElytra implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		getConfig().load();
 		logger.info("auto switch elytra initialized");
+	}
+
+	public static ModConfig getConfig() {
+		return ModConfig.INSTANCE;
 	}
 }

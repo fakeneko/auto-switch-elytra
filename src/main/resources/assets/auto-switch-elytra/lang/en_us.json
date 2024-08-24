@@ -1,0 +1,7 @@
+{
+  "config.auto-switch-elytra.title": "title",
+  "config.auto-switch-elytra.general": "General Config",
+  "config.auto-switch-elytra.enabled": "Auto Switch Elytra",
+  "config.auto-switch-elytra.general.tooltip": "There is currently only one configuration",
+  "config.auto-switch-elytra.enabled.description": "When you double-click on the SPACE key, it helps you switch elytra automatically"
+}

@@ -3,23 +3,25 @@
 	"id": "auto-switch-elytra",
 	"version": "${version}",
 	"name": "Auto switch elytra",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "如你所见，这是一个自动切换鞘翅的模组",
 	"authors": [
-		"Me!"
+		"fakeneko"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://gitee.com/fakeneko/auto-switch-elytra"
 	},
-	"license": "CC0-1.0",
+	"license": "LGPL-3.0",
 	"icon": "assets/auto-switch-elytra/icon.png",
-	"environment": "*",
+	"environment": "client",
 	"entrypoints": {
 		"main": [
 			"cn.com.fakeneko.AutoSwitchElytra"
 		],
 		"fabric-datagen": [
 			"cn.com.fakeneko.AutoSwitchElytraDataGenerator"
+		],
+		"modmenu": [
+			"cn.com.fakeneko.modmenu.ModMenuApiAutoSwitchElytra"
 		]
 	},
 	"mixins": [
