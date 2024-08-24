@@ -11,7 +11,9 @@
 
 	],
 	"contact": {
-		"sources": "https://gitee.com/fakeneko/auto-switch-elytra"
+		"homepage": "https://gitee.com/fakeneko/auto-switch-elytra",
+		"sources": "https://gitee.com/fakeneko/auto-switch-elytra",
+		"issues": "https://gitee.com/fakeneko/auto-switch-elytra/issues"
 	},
 	"license": "LGPL-3.0",
 	"icon": "assets/auto-switch-elytra/icon.png",
