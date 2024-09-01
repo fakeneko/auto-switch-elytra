@@ -1,10 +1,14 @@
 {
+  "modmenu.nameTranslation.auto-switch-elytra": "Not Only Is Auto switch elytra",
+  "modmenu.descriptionTranslation.auto-switch-elytra": "Make MC Great Again And Again",
+  "modmenu.summaryTranslation.auto-switch-elytra": "When in the sky, it automatically switches to switch the upper elytra",
   "config.auto-switch-elytra.title": "title",
-  "config.auto-switch-elytra.general": "General Config",
-  "config.auto-switch-elytra.enabled": "Auto Switch Elytra",
-  "config.auto-switch-elytra.general.tooltip": "There is currently only one configuration",
+  "config.enable.title": "Enable",
+  "config.auto-switch-elytra.enabled": "Enable Auto Switch Elytra",
+  "config.enable.title.tooltip": "Enable New Features",
   "config.auto-switch-elytra.enabled.description": "When you double-click on the SPACE key, it helps you switch elytra automatically",
-  "modmenu.nameTranslation.auto-switch-elytra": "Auto switch elytra",
-  "modmenu.descriptionTranslation.auto-switch-elytra": "As you can see, this is a mod that automatically switches elytra.Based on the tweakeroo mod, but with the Malilib dependency removed entirely",
-  "modmenu.summaryTranslation.auto-switch-elytra": "When in the sky, it automatically switches to switch the upper elytra"
+  "config.armor-stand-interactive.disable": "Disable Armor Stand Interactive",
+  "config.armor-stand-interactive.disable.description": "After activation, player interaction with the armor frame is prohibited",
+  "config.disable.title": "Disable",
+  "config.disable.title.tooltip": "Disable Some Vanilla Features"
 }

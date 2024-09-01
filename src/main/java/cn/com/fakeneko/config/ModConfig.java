@@ -31,16 +31,18 @@ public class ModConfig {
 
     // 配置项，自动切换鞘翅
     public boolean enabled_auto_switch_elytra = false;
+    public boolean disable_armor_stand_interactive = false;
 
     // 保存配置
     public void save() {
         try {
             Files.deleteIfExists(configFile);
             JsonObject json = new JsonObject();
-            json.addProperty("auto_switch_elytra", enabled_auto_switch_elytra);
+            json.addProperty("enabled_auto_switch_elytra", enabled_auto_switch_elytra);
+            json.addProperty("disable_armor_stand_interactive", disable_armor_stand_interactive);
             Files.writeString(configFile, gson.toJson(json));
         } catch (IOException e) {
-            e.printStackTrace();
+            e.fillInStackTrace();
         }
     }
 
@@ -55,11 +57,14 @@ public class ModConfig {
             // 读取配置文件
             JsonObject json = gson.fromJson(Files.readString(configFile), JsonObject.class);
             // 加载配置项
-            if (json.has("auto_switch_elytra")) {
-                enabled_auto_switch_elytra = json.getAsJsonPrimitive("auto_switch_elytra").getAsBoolean();
+            if (json.has("enabled_auto_switch_elytra")) {
+                enabled_auto_switch_elytra = json.getAsJsonPrimitive("enabled_auto_switch_elytra").getAsBoolean();
+            }
+            if (json.has("disable_armor_stand_interactive")) {
+                disable_armor_stand_interactive = json.getAsJsonPrimitive("disable_armor_stand_interactive").getAsBoolean();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            e.fillInStackTrace();
         }
     }
 
@@ -81,17 +86,36 @@ public class ModConfig {
                 .controller(BooleanControllerBuilder::create)
                 .build();
 
+        var Option_ToggleDisableArmorStandInteractive = Option.<Boolean>createBuilder()
+                .name(Text.translatable("config.armor-stand-interactive.disable"))
+                .description(OptionDescription.of(Text.translatable("config.armor-stand-interactive.disable.description")))
+                .binding(
+                        false,
+                        () -> disable_armor_stand_interactive,
+                        value -> disable_armor_stand_interactive = value
+                )
+                .controller(BooleanControllerBuilder::create)
+                .build();
+
         // 定义category，并把option添加到category
-        var Category_general = ConfigCategory.createBuilder()
-                .name(Text.translatable("config.auto-switch-elytra.general"))
-                .tooltip(Text.translatable("config.auto-switch-elytra.general.tooltip"))
+        var Category_enable = ConfigCategory.createBuilder()
+                .name(Text.translatable("config.enable.title"))
+                .tooltip(Text.translatable("config.enable.title.tooltip"))
                 .option(Option_ToggleAutoSwitchElytra)
+                .build();
+
+        // 定义category，并把option添加到category
+        var Category_disable = ConfigCategory.createBuilder()
+                .name(Text.translatable("config.disable.title"))
+                .tooltip(Text.translatable("config.disable.title.tooltip"))
+                .option(Option_ToggleDisableArmorStandInteractive)
                 .build();
 
         // 构建yacl配置，并把category添加到yacl配置
         return YetAnotherConfigLib.createBuilder()
                 .title(Text.translatable("config.auto-switch-elytra.title"))
-                .category(Category_general)
+                .category(Category_enable)
+                .category(Category_disable)
                 .save(this::save)
                 .build()
                 .generateScreen(parent);
@@ -100,5 +124,10 @@ public class ModConfig {
     // 获取配置项
     public boolean get_enabled_auto_switch_elytra() {
         return enabled_auto_switch_elytra;
+    }
+
+    // 获取配置项
+    public boolean get_disable_armor_stand_interactive() {
+        return disable_armor_stand_interactive;
     }
 }
