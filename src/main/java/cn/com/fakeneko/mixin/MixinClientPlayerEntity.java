@@ -32,51 +32,36 @@ public abstract class MixinClientPlayerEntity extends AbstractClientPlayerEntity
     @Inject(method = "tickMovement",
             at = @At(value = "INVOKE", shift = At.Shift.BEFORE,
                     target = "Lnet/minecraft/client/network/ClientPlayerEntity;getEquippedStack(Lnet/minecraft/entity/EquipmentSlot;)Lnet/minecraft/item/ItemStack;"))
-    private void onFallFlyingCheckChestSlot(CallbackInfo ci)
-    {
-        if (ModConfig.INSTANCE.get_enabled_auto_switch_elytra())
-        {
+    private void onFallFlyingCheckChestSlot(CallbackInfo ci) {
+        if (ModConfig.INSTANCE.get_enabled_auto_switch_elytra()) {
             // PlayerEntity#checkFallFlying
-            if (!this.isOnGround() && !this.isFallFlying() && !this.isInFluid() && !this.hasStatusEffect(StatusEffects.LEVITATION))
-            {
+            if (!this.isOnGround() && !this.isFallFlying() && !this.isInFluid() && !this.hasStatusEffect(StatusEffects.LEVITATION)) {
                 if (!this.getEquippedStack(EquipmentSlot.CHEST).isOf(Items.ELYTRA) ||
                         this.getEquippedStack(EquipmentSlot.CHEST).getDamage() > this.getEquippedStack(EquipmentSlot.CHEST).getMaxDamage() - 10)
                 {
                     InventoryUtils.equipBestElytra(this);
                 }
             }
-        }
-        else
-        {
+        } else {
             // reset auto switch item if the feature is disabled.
             this.autoSwitchElytraChestplate = ItemStack.EMPTY;
         }
     }
 
     @Inject(method = "onTrackedDataSet", at = @At("RETURN"))
-    private void onStopFlying(TrackedData<?> data, CallbackInfo ci)
-    {
-        if (ModConfig.INSTANCE.get_enabled_auto_switch_elytra())
-        {
-            if (FLAGS.equals(data) && this.falling)
-            {
-                if (!this.isFallFlying() && this.getEquippedStack(EquipmentSlot.CHEST).isOf(Items.ELYTRA))
-                {
-                    if (!this.autoSwitchElytraChestplate.isEmpty() && !this.autoSwitchElytraChestplate.isOf(Items.ELYTRA))
-                    {
-                        if (this.playerScreenHandler.getCursorStack().isEmpty())
-                        {
+    private void onStopFlying(TrackedData<?> data, CallbackInfo ci) {
+        if (ModConfig.INSTANCE.get_enabled_auto_switch_elytra()) {
+            if (FLAGS.equals(data) && this.falling) {
+                if (!this.isFallFlying() && this.getEquippedStack(EquipmentSlot.CHEST).isOf(Items.ELYTRA)) {
+                    if (!this.autoSwitchElytraChestplate.isEmpty() && !this.autoSwitchElytraChestplate.isOf(Items.ELYTRA)) {
+                        if (this.playerScreenHandler.getCursorStack().isEmpty()) {
                             int targetSlot = InventoryUtils.findSlotWithItem(this.playerScreenHandler, this.autoSwitchElytraChestplate, true, false);
-
-                            if (targetSlot >= 0)
-                            {
+                            if (targetSlot >= 0) {
                                 InventoryUtils.swapItemToEquipmentSlot(this, EquipmentSlot.CHEST, targetSlot);
                                 this.autoSwitchElytraChestplate = ItemStack.EMPTY;
                             }
                         }
-                    }
-                    else
-                    {
+                    } else {
                         // if cached previous item is empty, try to swap back to the default chest plate.
                         InventoryUtils.swapElytraAndChestPlate(this);
                     }

@@ -15,6 +15,7 @@ public class AutoSwitchElytra implements ModInitializer {
 		logger.info("auto switch elytra initialized");
 	}
 
+	// 模组初始化时，获取config实例
 	public static ModConfig getConfig() {
 		return ModConfig.INSTANCE;
 	}
