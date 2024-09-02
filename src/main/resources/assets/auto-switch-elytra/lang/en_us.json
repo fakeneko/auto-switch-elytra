@@ -6,7 +6,7 @@
   "config.enable.title": "Enable",
   "config.auto-switch-elytra.enabled": "Enable Auto Switch Elytra",
   "config.enable.title.tooltip": "Enable New Features",
-  "config.auto-switch-elytra.enabled.description": "When you double-click on the SPACE key, it helps you switch elytra automatically",
+  "config.auto-switch-elytra.enabled.description": "When you double-click on the SPACE key, it helps you switch elytra automatically.\nBut if you have the tweakeroo module, this setting will not working and you need to use tweakeroo's automatic switching of elytra",
   "config.armor-stand-interactive.disable": "Disable Armor Stand Interactive",
   "config.armor-stand-interactive.disable.description": "After activation, player interaction with the armor frame is prohibited",
   "config.disable.title": "Disable",
