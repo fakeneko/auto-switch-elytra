@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "auto-switch-elytra",
-	"version": "0.21.0-feature-3",
+	"version": "${version}",
 	"name": "Auto switch elytra",
 	"description": "如你所见，这是一个自动切换鞘翅的模组",
 	"authors": [
