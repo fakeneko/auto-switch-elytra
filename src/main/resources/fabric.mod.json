@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "auto-switch-elytra",
-	"version": "${version}",
+	"version": "0.21.0-feature-2",
 	"name": "Auto switch elytra",
 	"description": "如你所见，这是一个自动切换鞘翅的模组",
 	"authors": [
@@ -24,6 +24,9 @@
 		],
 		"modmenu": [
 			"cn.com.fakeneko.modmenu.ModMenuApiAutoSwitchElytra"
+		],
+		"client": [
+			"cn.com.fakeneko.keybinds.KeyBindings"
 		]
 	},
 	"mixins": [
@@ -34,7 +37,8 @@
 		"minecraft": "~1.21",
 		"java": ">=21",
 		"fabric-api": "*",
-		"yet_another_config_lib_v3": ">=3.5.0"
+		"yet_another_config_lib_v3": ">=3.5.0",
+		"fabric-key-binding-api-v1": "*"
 	},
 	"suggests": {
 		"modmenu": ">=11.0.0"

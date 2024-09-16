@@ -10,5 +10,7 @@
   "config.armor-stand-interactive.disable": "禁用盔甲架交互",
   "config.armor-stand-interactive.disable.description": "启用后，禁止玩家和盔甲架的交互",
   "config.disable.title": "禁用",
-  "config.disable.title.tooltip": "禁用某些原版功能"
+  "config.disable.title.tooltip": "禁用某些原版功能",
+  "key.category.auto_switch_elytra": "自动切换鞘翅",
+  "key.category.auto_switch_elytra.configuration": "打开自动切换鞘翅配置"
 }
