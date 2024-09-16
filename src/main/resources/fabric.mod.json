@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "auto-switch-elytra",
-	"version": "0.21.0-feature-2",
+	"version": "0.21.0-feature-3",
 	"name": "Auto switch elytra",
 	"description": "如你所见，这是一个自动切换鞘翅的模组",
 	"authors": [
@@ -37,7 +37,7 @@
 		"minecraft": "~1.21",
 		"java": ">=21",
 		"fabric-api": "*",
-		"yet_another_config_lib_v3": ">=3.5.0",
+		"cloth-config": ">=15.0.130",
 		"fabric-key-binding-api-v1": "*"
 	},
 	"suggests": {

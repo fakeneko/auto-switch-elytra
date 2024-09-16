@@ -2,7 +2,7 @@
   "modmenu.nameTranslation.auto-switch-elytra": "不仅仅是自动切换鞘翅",
   "modmenu.descriptionTranslation.auto-switch-elytra": "使MC再次伟大的二次方！（滑稽）",
   "modmenu.summaryTranslation.auto-switch-elytra": "在空中时，自动切换切换上鞘翅",
-  "config.auto-switch-elytra.title": "title",
+  "config.auto-switch-elytra.title": "自动切换鞘翅",
   "config.enable.title": "启用",
   "config.auto-switch-elytra.enabled": "启用自动切换鞘翅",
   "config.enable.title.tooltip": "启用某些新特性或功能",

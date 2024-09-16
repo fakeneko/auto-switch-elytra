@@ -2,7 +2,7 @@
   "modmenu.nameTranslation.auto-switch-elytra": "Not Only Is Auto switch elytra",
   "modmenu.descriptionTranslation.auto-switch-elytra": "Make MC Great Again And Again",
   "modmenu.summaryTranslation.auto-switch-elytra": "When in the sky, it automatically switches to switch the upper elytra",
-  "config.auto-switch-elytra.title": "title",
+  "config.auto-switch-elytra.title": "Auto Switch Elytra",
   "config.enable.title": "Enable",
   "config.auto-switch-elytra.enabled": "Enable Auto Switch Elytra",
   "config.enable.title.tooltip": "Enable New Features",

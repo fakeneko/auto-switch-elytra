@@ -1,12 +1,12 @@
 package cn.com.fakeneko.keybinds;
 
+import cn.com.fakeneko.clothconfig.ModConfigBuilder;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import cn.com.fakeneko.config.ModConfig;
 
 /**
  * @author fakeneko
@@ -24,7 +24,7 @@ public class KeyBindings implements ClientModInitializer {
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (binding1.wasPressed()) {
-                client.setScreen(ModConfig.INSTANCE.makeScreen(client.currentScreen));
+                client.setScreen(ModConfigBuilder.INSTANCE.makeScreen(client.currentScreen));
             }
         });
     }
