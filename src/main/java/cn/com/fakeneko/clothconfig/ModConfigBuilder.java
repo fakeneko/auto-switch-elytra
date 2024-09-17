@@ -70,16 +70,17 @@ public class ModConfigBuilder {
                 .setTitle(Text.translatable("config.auto-switch-elytra.title"))
                 .setSavingRunnable(this::save);
 
-        var general = builder.getOrCreateCategory(Text.translatable("config.auto-switch-elytra.enabled"));
+        var category_enable = builder.getOrCreateCategory(Text.translatable("config.enable.title"));
+        var category_disable = builder.getOrCreateCategory(Text.translatable("config.disable.title"));
         var entryBuilder = builder.entryBuilder();
 
-        general.addEntry(entryBuilder.startBooleanToggle(Text.translatable("config.auto-switch-elytra.enabled"), enabled_auto_switch_elytra)
+        category_enable.addEntry(entryBuilder.startBooleanToggle(Text.translatable("config.auto-switch-elytra.enabled"), enabled_auto_switch_elytra)
                 .setDefaultValue(false)
                 .setSaveConsumer(value -> enabled_auto_switch_elytra = value)
                 .build()
         );
 
-        general.addEntry(entryBuilder.startBooleanToggle(Text.translatable("config.armor-stand-interactive.disable"), disable_armor_stand_interactive)
+        category_disable.addEntry(entryBuilder.startBooleanToggle(Text.translatable("config.armor-stand-interactive.disable"), disable_armor_stand_interactive)
                 .setDefaultValue(false)
                 .setSaveConsumer(value -> disable_armor_stand_interactive = value)
                 .build()

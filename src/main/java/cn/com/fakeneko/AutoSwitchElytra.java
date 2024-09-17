@@ -11,11 +11,12 @@ public class AutoSwitchElytra implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		// 初始化config
 		getConfigBuilder().load();
 		logger.info("auto switch elytra initialized");
 	}
 
-	// 模组初始化时，获取config实例
+	// 获取config实例
 	public static ModConfigBuilder getConfigBuilder() {
 		return ModConfigBuilder.INSTANCE;
 	}
