@@ -1,6 +1,6 @@
 package cn.com.fakeneko.mixin;
 
-import cn.com.fakeneko.clothconfig.ModConfigBuilder;
+import cn.com.fakeneko.AutoSwitchElytra;
 import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResult;
@@ -21,7 +21,7 @@ public abstract class MixinArmorStandEntity{
 
     @Inject(method = "interactAt", at = @At(value = "HEAD"), cancellable = true)
     private void disableArmorStandInteract(PlayerEntity player, Vec3d hitPos, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
-        if (ModConfigBuilder.INSTANCE.get_disable_armor_stand_interactive()) {
+        if (AutoSwitchElytra.autoSwitchElytraConfig.get_disable_armor_stand_interactive()) {
             cir.setReturnValue(ActionResult.PASS);
         }
     }

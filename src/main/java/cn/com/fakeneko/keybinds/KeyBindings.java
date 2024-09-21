@@ -1,12 +1,12 @@
 package cn.com.fakeneko.keybinds;
 
-import cn.com.fakeneko.clothconfig.ModConfigBuilder;
+import cn.com.fakeneko.AutoSwitchElytra;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 
 /**
  * @author fakeneko
@@ -26,7 +26,7 @@ public class KeyBindings implements ClientModInitializer {
         // 注册按键绑定事件
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (binding1.wasPressed()) {
-                client.setScreen(ModConfigBuilder.INSTANCE.makeScreen(client.currentScreen));
+                client.setScreen(AutoSwitchElytra.autoSwitchElytraConfig.makeScreen(client.currentScreen));
             }
         });
     }

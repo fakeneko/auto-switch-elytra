@@ -8,16 +8,12 @@ import org.slf4j.LoggerFactory;
 public class AutoSwitchElytra implements ModInitializer {
 	public static final String MOD_ID = "auto-switch-elytra";
 	public static final Logger logger = LoggerFactory.getLogger(MOD_ID);
+	public static final ModConfigBuilder autoSwitchElytraConfig = new ModConfigBuilder();
 
 	@Override
 	public void onInitialize() {
 		// 初始化config
-		getConfigBuilder().load();
+		autoSwitchElytraConfig.load();
 		logger.info("auto switch elytra initialized");
-	}
-
-	// 获取config实例
-	public static ModConfigBuilder getConfigBuilder() {
-		return ModConfigBuilder.INSTANCE;
 	}
 }

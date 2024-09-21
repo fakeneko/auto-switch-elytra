@@ -15,6 +15,6 @@ public class ModMenuApiAutoSwitchElytra implements ModMenuApi {
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
 //        return parent -> AutoSwitchElytra.getConfig().makeScreen(parent);
 //        return parent ->AutoSwitchElytra.getConfigBuilder().makeScreen(parent);
-        return  AutoSwitchElytra.getConfigBuilder()::makeScreen;
+        return  AutoSwitchElytra.autoSwitchElytraConfig::makeScreen;
     }
 }
