@@ -13,8 +13,6 @@ import com.terraformersmc.modmenu.api.ModMenuApi;
 public class ModMenuApiAutoSwitchElytra implements ModMenuApi {
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-//        return parent -> AutoSwitchElytra.getConfig().makeScreen(parent);
-//        return parent ->AutoSwitchElytra.getConfigBuilder().makeScreen(parent);
         return  AutoSwitchElytra.autoSwitchElytraConfig::makeScreen;
     }
 }
