@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "cn.com.fakeneko.mixin",
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "MixinArmorStandEntity"
+  ],
+  "mixinPriority": 990,
+  "injectors": {
+    "defaultRequire": 0
+  },
+  "mixins": [
+    "MixinClientPlayerEntity"
+  ]
+}

@@ -1,0 +1,13 @@
+[versions]
+# Base properties
+yarn_mappings="1.21.1+build.3"
+mappings_patch="1.21+build.4"
+# Gradle plugin
+architectury-loom = "1.6-SNAPSHOT"
+
+[libraries]
+yarn-mappings = { group = "net.fabricmc", name = "yarn", version.ref = "yarn_mappings"}
+yarn-mappings-patch = { group = "dev.architectury", name = "yarn-mappings-patch-neoforge", version.ref = "mappings_patch"}
+
+[plugins]
+architectury-loom = { id = "dev.architectury.loom", version.ref = "architectury-loom" }
