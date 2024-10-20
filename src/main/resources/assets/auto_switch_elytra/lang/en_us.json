@@ -1,0 +1,16 @@
+{
+  "modmenu.nameTranslation.auto-switch-elytra": "Not Only Is Auto switch elytra",
+  "modmenu.descriptionTranslation.auto-switch-elytra": "Make MC Great Again And Again",
+  "modmenu.summaryTranslation.auto-switch-elytra": "When in the sky, it automatically switches to switch the upper elytra",
+  "config.auto-switch-elytra.title": "Auto Switch Elytra",
+  "config.enable.title": "Enable",
+  "config.auto-switch-elytra.enabled": "Enable Auto Switch Elytra",
+  "config.enable.title.tooltip": "Enable New Features",
+  "config.auto-switch-elytra.enabled.description": "When you double-click on the SPACE key, it helps you switch elytra automatically.\nBut if you have the tweakeroo module, this setting will not working and you need to use tweakeroo's automatic switching of elytra",
+  "config.armor-stand-interactive.disable": "Disable Armor Stand Interactive",
+  "config.armor-stand-interactive.disable.description": "After activation, player interaction with the armor frame is prohibited",
+  "config.disable.title": "Disable",
+  "config.disable.title.tooltip": "Disable Some Vanilla Features",
+  "key.category.auto_switch_elytra": "Auto Switch Elytra",
+  "key.category.auto_switch_elytra.configuration": "Open Auto Switch Elytra Configuration"
+}

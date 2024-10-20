@@ -20,6 +20,7 @@ group = mod_group_id
 
 repositories {
     mavenLocal()
+    maven { url "https://maven.shedaniel.me/" }
 }
 
 base {
@@ -98,6 +99,8 @@ dependencies {
     // For all intends and purposes: You can treat this dependency as if it is a normal library you would use.
     implementation "net.neoforged:neoforge:${neo_version}"
 
+    implementation "me.shedaniel.cloth:cloth-config-neoforge:15.0.140"
+
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
@@ -137,7 +140,8 @@ tasks.withType(ProcessResources).configureEach {
             mod_license            : mod_license,
             mod_version            : mod_version,
             mod_authors            : mod_authors,
-            mod_description        : mod_description
+            mod_description        : mod_description,
+            cloth_config_version_range : cloth_config_version_range
     ]
     inputs.properties replaceProperties
 
