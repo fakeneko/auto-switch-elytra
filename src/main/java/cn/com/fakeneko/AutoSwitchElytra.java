@@ -1,12 +1,10 @@
-package cn.com.fakeneko.autoSwitchElytra;
+package cn.com.fakeneko;
 
+import cn.com.fakeneko.config.ModConfig;
+import cn.com.fakeneko.config.ModListApi;
 import cn.com.fakeneko.Keybinds.KeyBindings;
-import cn.com.fakeneko.clothconfig.ModConfigBuilder;
-import cn.com.fakeneko.clothconfig.ModMenuApiAutoSwitchElytra;
-import net.minecraft.client.Minecraft;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.loading.FMLEnvironment;
-import net.neoforged.neoforge.client.event.ClientTickEvent;
 import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 import net.neoforged.api.distmarker.Dist;
@@ -17,8 +15,8 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
-@Mod(auto_switch_elytra.MOD_ID)
-public class auto_switch_elytra
+@Mod(AutoSwitchElytra.MOD_ID)
+public class AutoSwitchElytra
 {
     // Define mod id in a common place for everything to reference
     public static final String MOD_ID = "auto_switch_elytra";
@@ -27,11 +25,11 @@ public class auto_switch_elytra
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
-    public auto_switch_elytra(IEventBus modEventBus)
+    public AutoSwitchElytra(IEventBus modEventBus)
     {
         if (FMLEnvironment.dist.isClient()) {
-            ModConfigBuilder.INSTANCE.load();
-            ModMenuApiAutoSwitchElytra.registerModsPage();
+            ModConfig.modConfig.load();
+            ModListApi.registerModsPage();
         }
         modEventBus.addListener(KeyBindings::register);
     }

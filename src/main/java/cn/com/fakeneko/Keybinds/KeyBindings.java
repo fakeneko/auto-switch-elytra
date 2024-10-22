@@ -1,6 +1,6 @@
 package cn.com.fakeneko.Keybinds;
 
-import cn.com.fakeneko.clothconfig.ModConfigBuilder;
+import cn.com.fakeneko.config.ScreenBuilder;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
@@ -12,8 +12,7 @@ import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.common.util.Lazy;
 import org.lwjgl.glfw.GLFW;
 
-import static cn.com.fakeneko.autoSwitchElytra.auto_switch_elytra.LOGGER;
-import static cn.com.fakeneko.autoSwitchElytra.auto_switch_elytra.MOD_ID;
+import static cn.com.fakeneko.AutoSwitchElytra.MOD_ID;
 
 /**
  * @author fakeneko
@@ -39,7 +38,7 @@ public class KeyBindings {
     public static void onClientTick(ClientTickEvent.Post e) {
         Minecraft client = Minecraft.getInstance();
         if (KeyBindings.binding1.get().consumeClick()) {
-            client.setScreen(ModConfigBuilder.INSTANCE.makeScreen(client.screen));
+            client.setScreen(ScreenBuilder.modScreen.makeScreen(client.screen));
         }
     }
 }

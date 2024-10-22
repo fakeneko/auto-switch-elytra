@@ -24,7 +24,7 @@ repositories {
 }
 
 base {
-    archivesName = mod_id
+    archivesName = "${mod_id}-${mod_platform}"
 }
 
 // Mojang ships Java 21 to end users starting in 1.20.5, so mods should target Java 21.
@@ -99,7 +99,7 @@ dependencies {
     // For all intends and purposes: You can treat this dependency as if it is a normal library you would use.
     implementation "net.neoforged:neoforge:${neo_version}"
 
-    implementation "me.shedaniel.cloth:cloth-config-neoforge:15.0.140"
+    implementation "me.shedaniel.cloth:cloth-config-neoforge:${cloth_config_version}"
 
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
@@ -141,7 +141,8 @@ tasks.withType(ProcessResources).configureEach {
             mod_version            : mod_version,
             mod_authors            : mod_authors,
             mod_description        : mod_description,
-            cloth_config_version_range : cloth_config_version_range
+            cloth_config_version : cloth_config_version,
+            mod_platform :mod_platform
     ]
     inputs.properties replaceProperties
 

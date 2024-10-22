@@ -1,6 +1,6 @@
 package cn.com.fakeneko.mixin;
 
-import cn.com.fakeneko.clothconfig.ModConfigBuilder;
+import cn.com.fakeneko.config.ModConfig;
 import com.google.common.collect.ImmutableList;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.client.Minecraft;
@@ -59,7 +59,7 @@ public class MixinClientPlayerEntity extends AbstractClientPlayer {
         LocalPlayer player = (LocalPlayer) (Object) this;
 
         // 配置开关
-        if (!ModConfigBuilder.INSTANCE.get_enabled_auto_switch_elytra()) {
+        if (!ModConfig.enabled_auto_switch_elytra.get()) {
             return;
         }
 
@@ -77,7 +77,7 @@ public class MixinClientPlayerEntity extends AbstractClientPlayer {
     @Inject(method = "aiStep", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/client/player/LocalPlayer;isFallFlying()Z", ordinal = 0))
     private void myFallFlyingJudge(CallbackInfo ci) {
         LocalPlayer player = (LocalPlayer) (Object) this;
-        if (!ModConfigBuilder.INSTANCE.get_enabled_auto_switch_elytra()) {
+        if (!ModConfig.enabled_auto_switch_elytra.get()) {
             return;
         }
         ItemStack chestItemStack = player.getItemBySlot(EquipmentSlot.CHEST);

@@ -1,6 +1,6 @@
 package cn.com.fakeneko.mixin;
 
-import cn.com.fakeneko.clothconfig.ModConfigBuilder;
+import cn.com.fakeneko.config.ModConfig;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.decoration.ArmorStand;
@@ -21,7 +21,7 @@ public abstract class MixinArmorStandEntity{
 
     @Inject(method = "interactAt", at = @At(value = "HEAD"), cancellable = true)
     private void disableArmorStandInteract(Player player, Vec3 hitPos, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
-        if (ModConfigBuilder.INSTANCE.get_disable_armor_stand_interactive()) {
+        if (ModConfig.disable_armor_stand_interactive.get()) {
             cir.setReturnValue(InteractionResult.PASS);
         }
     }
