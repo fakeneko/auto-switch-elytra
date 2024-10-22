@@ -7,7 +7,7 @@ version = project.mod_version
 group = project.maven_group
 
 base {
-	archivesName = project.archives_base_name
+	archivesName = "${project.mod_id}-${project.mod_platform}"
 }
 
 repositories {
@@ -49,17 +49,33 @@ dependencies {
 	modImplementation "me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"
 }
 
-processResources {
-	inputs.property "version", project.version
-
-	filesMatching("fabric.mod.json") {
-		expand "version": project.version
-	}
-}
+//processResources {
+//	inputs.property "version", project.version
+//
+//	filesMatching("fabric.mod.json") {
+//		expand "version": project.version
+//	}
+//}
 
 tasks.withType(JavaCompile).configureEach {
 	it.options.release = 21
 }
+
+tasks.withType(ProcessResources).configureEach {
+	var replaceProperties = [
+			cloth_config_version	: cloth_config_version,
+			minecraft_version     	: minecraft_version,
+			loader_version			: loader_version,
+			mod_version				: mod_version,
+			mod_id					: mod_id
+	]
+	inputs.properties replaceProperties
+
+	filesMatching(['fabric.mod.json']) {
+		expand replaceProperties
+	}
+}
+
 
 java {
 	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
