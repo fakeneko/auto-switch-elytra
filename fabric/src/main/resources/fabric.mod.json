@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${version}",
+  "name": "${mod_name}",
+  "description": "${description}",
+  "authors": [
+    "${mod_author}"
+  ],
+  "contact": {
+    "homepage": "${mod_homepage}",
+    "sources": "${mod_sources}"
+  },
+  "license": "${license}",
+  "icon": "${mod_id}.png",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "cn.com.fakeneko.auto_switch_elytra.FabricAutoSwitchElytra"
+    ],
+    "modmenu": [
+      "cn.com.fakeneko.auto_switch_elytra.modmenu.FabricModmeunApi"
+    ],
+    "client": [
+      "cn.com.fakeneko.auto_switch_elytra.Keybinds.FabricKeyBindings"
+    ]
+  },
+  "mixins": [
+    "${mod_id}.mixins.json",
+    "${mod_id}.fabric.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${fabric_loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}",
+    "java": ">=${java_version}",
+    "fabric-key-binding-api-v1": "*",
+    "cloth-config": ">=${cloth_config_version}"
+  },
+  "suggests": {
+    "modmenu": ">=${modmenu_version}",
+    "yet_another_config_lib_v3": ">=${yacl_version}"
+  }
+}
