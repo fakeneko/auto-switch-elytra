@@ -22,7 +22,7 @@ public class ModConfig {
 
     private static final List<ConfigOption<Object>> options = new ArrayList<>();
 
-    private final Path configFile = new File(ConfigServices.FILEPATH.getFilePath(), Constants.MOD_ID).toPath();
+    private final Path configFile = new File(ConfigServices.FILEPATH.getFilePath(), Constants.MOD_ID + ".json").toPath();
 
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
