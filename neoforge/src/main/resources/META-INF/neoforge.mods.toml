@@ -35,8 +35,15 @@ side = "CLIENT"
 
 [[dependencies.${mod_id}]]
 modId="cloth_config"
-type="required"
+type="optional"
 versionRange="[${cloth_config_version},)"
+ordering="NONE"
+side="CLIENT"
+
+[[dependencies.${mod_id}]]
+modId="yet_another_config_lib_v3"
+type="optional"
+versionRange="[${yacl_version_base},)"
 ordering="NONE"
 side="CLIENT"
 # Features are specific properties of the game environment, that you may want to declare you require. This example declares

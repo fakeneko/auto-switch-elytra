@@ -1,6 +1,8 @@
 package cn.com.fakeneko.auto_switch_elytra.Keybinds;
 
+import cn.com.fakeneko.auto_switch_elytra.FabricAutoSwitchElytra;
 import cn.com.fakeneko.auto_switch_elytra.config.ScreenBuilder;
+import cn.com.fakeneko.auto_switch_elytra.config.ScreenBuilderYacl;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
@@ -24,7 +26,12 @@ public class FabricKeyBindings implements ClientModInitializer {
         // 注册按键绑定事件
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (binding1.consumeClick()) {
-                client.setScreen(ScreenBuilder.modScreen.makeScreen(client.screen));
+                if (FabricAutoSwitchElytra.istalledClothConfig()) {
+                    client.setScreen(ScreenBuilder.modScreen.makeScreen(client.screen));
+                }
+                if (FabricAutoSwitchElytra.istalledYacl()) {
+                    client.setScreen(ScreenBuilderYacl.modScreen.makeScreen(client.screen));
+                }
             }
         });
     }

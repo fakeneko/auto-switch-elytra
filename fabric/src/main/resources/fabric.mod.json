@@ -34,11 +34,11 @@
     "fabric-api": "*",
     "minecraft": "${minecraft_version}",
     "java": ">=${java_version}",
-    "fabric-key-binding-api-v1": "*",
-    "cloth-config": ">=${cloth_config_version}"
+    "fabric-key-binding-api-v1": "*"
   },
   "suggests": {
     "modmenu": ">=${modmenu_version}",
-    "yet_another_config_lib_v3": ">=${yacl_version}"
+    "yet_another_config_lib_v3": ">=${yacl_version_base}",
+    "cloth-config": ">=${cloth_config_version}"
   }
 }

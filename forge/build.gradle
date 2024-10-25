@@ -67,6 +67,8 @@ sourceSets.main.resources.srcDir 'src/generated/resources'
 repositories {
     mavenLocal()
     maven { url "https://maven.shedaniel.me/" }
+//    1.21 no forge yacl
+    maven { url "https://maven.isxander.dev/releases"}
 }
 
 dependencies {
@@ -75,7 +77,9 @@ dependencies {
 
     // Forge's hack fix
     implementation('net.sf.jopt-simple:jopt-simple:5.0.4') { version { strictly '5.0.4' } }
-    implementation "me.shedaniel.cloth:cloth-config-forge:${cloth_config_version}"
+    implementation "me.shedaniel.cloth:cloth-config-${project.name}:${cloth_config_version}"
+//    1.21 no forge yacl
+    compileOnly group: "dev.isxander", name: "yet-another-config-lib", version: "${yacl_version_base}-neoforge"
 }
 
 publishing {

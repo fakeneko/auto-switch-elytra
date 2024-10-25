@@ -7,6 +7,8 @@ import cn.com.fakeneko.auto_switch_elytra.modmenu.NeoForgeModListApi;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.fml.loading.FMLLoader;
+import net.neoforged.fml.loading.moddiscovery.ModFileInfo;
 
 @Mod(Constants.MOD_ID)
 public class NeoForgeAutoSwitchElytra {
@@ -23,5 +25,15 @@ public class NeoForgeAutoSwitchElytra {
             NeoForgeModListApi.registerModsPage();
         }
         eventBus.addListener(NeoForgeKeyBindings::register);
+    }
+
+    public static boolean istalledClothConfig() {
+        ModFileInfo modFileInfo =  FMLLoader.getLoadingModList().getModFileById(Constants.CLOTH_CONFIG);
+        return modFileInfo != null;
+    }
+
+    public static boolean istalledYacl() {
+        ModFileInfo modFileInfo =  FMLLoader.getLoadingModList().getModFileById(Constants.YACL);
+        return modFileInfo != null;
     }
 }

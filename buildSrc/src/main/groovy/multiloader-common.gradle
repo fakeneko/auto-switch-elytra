@@ -98,7 +98,7 @@ processResources {
                        'java_version'                 : java_version,
                        'cloth_config_version'         : cloth_config_version,
                        'modmenu_version'              : modmenu_version,
-                       'yacl_version'                 : yacl_version,
+                       'yacl_version_base'            : yacl_version_base,
                        'mod_homepage'                 : mod_homepage,
                        'mod_sources'                  : mod_sources
     ]

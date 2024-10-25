@@ -1,7 +1,9 @@
 package cn.com.fakeneko.auto_switch_elytra.Keybinds;
 
 import cn.com.fakeneko.auto_switch_elytra.Constants;
+import cn.com.fakeneko.auto_switch_elytra.NeoForgeAutoSwitchElytra;
 import cn.com.fakeneko.auto_switch_elytra.config.ScreenBuilder;
+import cn.com.fakeneko.auto_switch_elytra.config.ScreenBuilderYacl;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
@@ -38,7 +40,13 @@ public class NeoForgeKeyBindings {
     public static void onClientTick(ClientTickEvent.Post e) {
         Minecraft client = Minecraft.getInstance();
         if (NeoForgeKeyBindings.binding1.get().consumeClick()) {
-            client.setScreen(ScreenBuilder.modScreen.makeScreen(client.screen));
+            if (NeoForgeAutoSwitchElytra.istalledClothConfig()) {
+                client.setScreen(ScreenBuilder.modScreen.makeScreen(client.screen));
+                return;
+            }
+            if (NeoForgeAutoSwitchElytra.istalledYacl()) {
+                client.setScreen(ScreenBuilderYacl.modScreen.makeScreen(client.screen));
+            }
         }
     }
 }

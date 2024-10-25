@@ -6,10 +6,12 @@ plugins {
 repositories {
     mavenLocal()
     maven { url "https://maven.shedaniel.me/" }
+    maven { url "https://maven.isxander.dev/releases"}
 }
 
 dependencies {
-    implementation "me.shedaniel.cloth:cloth-config-neoforge:${cloth_config_version}"
+    implementation "me.shedaniel.cloth:cloth-config-${project.name}:${cloth_config_version}"
+    compileOnly group: "dev.isxander", name: "yet-another-config-lib", version: "${yacl_version_base}-${project.name}"
 }
 
 neoForge {

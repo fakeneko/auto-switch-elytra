@@ -30,10 +30,16 @@ versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "CLIENT"
 
-[[dependencies.${mod_id}]]
+[[optional.${mod_id}]]
 modId="cloth_config"
-mandatory = true
-type="required"
+mandatory = false
 versionRange="[${cloth_config_version},)"
+ordering="NONE"
+side="CLIENT"
+
+[[optional.${mod_id}]]
+modId="yet_another_config_lib_v3"
+mandatory = false
+versionRange="[${yacl_version_base},)"
 ordering="NONE"
 side="CLIENT"

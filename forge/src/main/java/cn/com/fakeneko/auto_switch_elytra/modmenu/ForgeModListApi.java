@@ -1,6 +1,8 @@
 package cn.com.fakeneko.auto_switch_elytra.modmenu;
 
+import cn.com.fakeneko.auto_switch_elytra.ForgeAutoSwitchElytra;
 import cn.com.fakeneko.auto_switch_elytra.config.ScreenBuilder;
+import cn.com.fakeneko.auto_switch_elytra.config.ScreenBuilderYacl;
 import net.minecraftforge.client.ConfigScreenHandler;
 import net.minecraftforge.fml.ModLoadingContext;
 
@@ -11,9 +13,11 @@ import net.minecraftforge.fml.ModLoadingContext;
  */
 public class ForgeModListApi {
     public static void registerModsPage() {
-        ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class,
-                () -> new ConfigScreenHandler.ConfigScreenFactory(
-                        (container, parent) -> ScreenBuilder.modScreen.makeScreen(parent)
-                ));
+        if (ForgeAutoSwitchElytra.istalledClothConfig()) {
+            ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class,
+                    () -> new ConfigScreenHandler.ConfigScreenFactory(
+                            (container, parent) -> ScreenBuilder.modScreen.makeScreen(parent)
+                    ));
+        }
     }
 }

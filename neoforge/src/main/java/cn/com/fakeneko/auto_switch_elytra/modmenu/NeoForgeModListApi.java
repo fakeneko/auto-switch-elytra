@@ -1,6 +1,8 @@
 package cn.com.fakeneko.auto_switch_elytra.modmenu;
 
+import cn.com.fakeneko.auto_switch_elytra.NeoForgeAutoSwitchElytra;
 import cn.com.fakeneko.auto_switch_elytra.config.ScreenBuilder;
+import cn.com.fakeneko.auto_switch_elytra.config.ScreenBuilderYacl;
 import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
@@ -11,7 +13,14 @@ import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
  */
 public class NeoForgeModListApi {
     public static void registerModsPage() {
-        ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory.class,
-                () -> (container, parent) -> ScreenBuilder.modScreen.makeScreen(parent));
+        if (NeoForgeAutoSwitchElytra.istalledClothConfig()) {
+            ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory.class,
+                    () -> (container, parent) -> ScreenBuilder.modScreen.makeScreen(parent));
+            return;
+        }
+        if (NeoForgeAutoSwitchElytra.istalledYacl()) {
+            ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory.class,
+                    () -> (container, parent) -> ScreenBuilderYacl.modScreen.makeScreen(parent));
+        }
     }
 }
