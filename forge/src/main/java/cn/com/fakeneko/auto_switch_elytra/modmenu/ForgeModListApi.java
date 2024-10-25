@@ -2,7 +2,6 @@ package cn.com.fakeneko.auto_switch_elytra.modmenu;
 
 import cn.com.fakeneko.auto_switch_elytra.ForgeAutoSwitchElytra;
 import cn.com.fakeneko.auto_switch_elytra.config.ScreenBuilder;
-import cn.com.fakeneko.auto_switch_elytra.config.ScreenBuilderYacl;
 import net.minecraftforge.client.ConfigScreenHandler;
 import net.minecraftforge.fml.ModLoadingContext;
 
