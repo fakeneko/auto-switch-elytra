@@ -10,6 +10,7 @@ import static cn.com.fakeneko.auto_switch_elytra.config.ModConfig.modConfig;
  * @date 2024/10/24上午12:21
  * @description
  */
+// cloth config 配置界面构建器
 public class ScreenBuilder {
     public static final ScreenBuilder modScreen = new ScreenBuilder();
 

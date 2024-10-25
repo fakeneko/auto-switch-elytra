@@ -13,6 +13,7 @@ import net.minecraft.network.chat.Component;
  * @date 2024/10/25下午9:49
  * @description
  */
+// yacl 配置界面构建器
 public class ScreenBuilderYacl {
     public static final ScreenBuilderYacl modScreen = new ScreenBuilderYacl();
 

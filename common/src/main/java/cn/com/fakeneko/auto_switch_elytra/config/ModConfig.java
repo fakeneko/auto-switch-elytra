@@ -53,6 +53,7 @@ public class ModConfig {
         }
     }
 
+    // 存储配置
     void save() {
         try {
             Files.deleteIfExists(configFile);
@@ -66,6 +67,7 @@ public class ModConfig {
         }
     }
 
+    // 注册配置项
     private static <T> ConfigOption<T> registerOption(ConfigOption<T> option) {
         options.add((ConfigOption<Object>) option);
         return option;

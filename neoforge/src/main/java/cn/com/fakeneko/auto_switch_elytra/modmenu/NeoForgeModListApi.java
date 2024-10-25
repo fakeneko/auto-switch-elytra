@@ -13,6 +13,7 @@ import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
  */
 public class NeoForgeModListApi {
     public static void registerModsPage() {
+        // 根据存在的模组，加载不同的配置页面
         if (NeoForgeAutoSwitchElytra.istalledClothConfig()) {
             ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory.class,
                     () -> (container, parent) -> ScreenBuilder.modScreen.makeScreen(parent));

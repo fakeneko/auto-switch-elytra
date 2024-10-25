@@ -25,6 +25,7 @@ import org.lwjgl.glfw.GLFW;
 public class NeoForgeKeyBindings {
     public static Lazy<KeyMapping> binding1 = null;
 
+    // 注册快捷键
     public static void register(final RegisterKeyMappingsEvent event) {
         binding1  = Lazy.of(() -> new KeyMapping(
                 "key.category.auto_switch_elytra.configuration",
@@ -40,6 +41,7 @@ public class NeoForgeKeyBindings {
     public static void onClientTick(ClientTickEvent.Post e) {
         Minecraft client = Minecraft.getInstance();
         if (NeoForgeKeyBindings.binding1.get().consumeClick()) {
+            // 根据存在的模组，加载不同的配置页面
             if (NeoForgeAutoSwitchElytra.istalledClothConfig()) {
                 client.setScreen(ScreenBuilder.modScreen.makeScreen(client.screen));
                 return;
