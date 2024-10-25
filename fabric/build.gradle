@@ -20,7 +20,8 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
     modImplementation "me.shedaniel.cloth:cloth-config-${project.name}:${cloth_config_version}"
     modImplementation "com.terraformersmc:modmenu:${modmenu_version}"
-    compileOnly group: "dev.isxander", name: "yet-another-config-lib", version: "${yacl_version_base}-${project.name}"
+    // 只能用neoforge的源码，至于啥原因，咱也不知道，咱也不敢问
+    compileOnly group: "dev.isxander", name: "yet-another-config-lib", version: "${yacl_version_base}-neoforge"
 }
 
 loom {
