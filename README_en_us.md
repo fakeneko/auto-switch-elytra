@@ -16,8 +16,7 @@ Disable armor stand interactive. Disable player use with armor racks when turned
 
 ## Keybindings
 
-The default Right-Alt opens the configuration screen. This button can also be modified through Minecraft.  
-(Forge can't be opened via shortcut keys, only via ModList)
+The default Right-Alt opens the configuration screen. This button can also be modified through Minecraft.
 
 ## Dependencies
 

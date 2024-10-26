@@ -1,8 +1,11 @@
 package cn.com.fakeneko.auto_switch_elytra;
 
+import cn.com.fakeneko.auto_switch_elytra.Keybinds.ForgeKeyBindings;
 import cn.com.fakeneko.auto_switch_elytra.config.ModConfig;
 import cn.com.fakeneko.auto_switch_elytra.modmenu.ForgeModListApi;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.loading.moddiscovery.ModFileInfo;
@@ -16,6 +19,7 @@ public class ForgeAutoSwitchElytra {
         // project.
 
         // Use Forge to bootstrap the Common mod.
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         CommonClass.init();
 
@@ -23,6 +27,8 @@ public class ForgeAutoSwitchElytra {
             ModConfig.modConfig.load();
             ForgeModListApi.registerModsPage();
         }
+
+        modEventBus.addListener(ForgeKeyBindings::register);
     }
 
     public static boolean istalledClothConfig() {
