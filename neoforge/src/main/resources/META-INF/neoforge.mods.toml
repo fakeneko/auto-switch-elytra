@@ -1,0 +1,32 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+#issueTrackerURL = ""
+license = "MIT"
+
+[[mods]]
+modId = "auto_switch_elytra"
+version = "${version}"
+displayName = "Auto Switch Elytra"
+authors = "fakeneko"
+description = '''
+Auto Switch Elytra
+'''
+logoFile = "auto_switch_elytra.png"
+
+[[dependencies.auto_switch_elytra]]
+modId = "neoforge"
+type = "required"
+versionRange = "[20,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.auto_switch_elytra]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.20.6,)"
+ordering = "NONE"
+side = "BOTH"
+
+
+[[mixins]]
+config = "auto_switch_elytra.mixins.json"

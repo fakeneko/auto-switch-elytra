@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "cn.com.fakeneko.auto_switch_elytra.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "client": [
+  ],
+  "mixins": [
+    "MixinArmorStandEntity",
+    "MixinClientPlayerEntity"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
