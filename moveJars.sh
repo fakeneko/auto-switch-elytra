@@ -1,6 +1,6 @@
 platforms=("fabric" "neoforge")
 mod_name="auto_switch_elytra"
-mod_version="1.21.3"
+mod_version="1.21.5"
 for platform in "${platforms[@]}"
 do
   filename="${mod_name}-${platform}-${mod_version}.jar"

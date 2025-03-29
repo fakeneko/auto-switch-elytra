@@ -1,7 +1,6 @@
 package cn.com.fakeneko.auto_switch_elytra.mixin;
 
 import cn.com.fakeneko.auto_switch_elytra.commonConfig.ModConfig;
-import com.google.common.collect.ImmutableList;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -22,8 +21,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import net.minecraft.world.item.ItemStack;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author fakeneko
@@ -66,8 +63,8 @@ public class MixinClientPlayerEntity extends AbstractClientPlayer {
         }
 
         // 起飞前，自动切换鞘翅
-        List<ItemStack> inventory = getCombinedInventory(player);
-        LAST_INDEX = getElytraIndex(inventory);
+        // List<ItemStack> inventory = getCombinedInventory(player);
+        LAST_INDEX = getElytraIndex(player);
         equipElytra(player, CHESTPLATE_INDEX, LAST_INDEX);
     }
 
@@ -92,10 +89,17 @@ public class MixinClientPlayerEntity extends AbstractClientPlayer {
     }
 
     // 获取第一个鞘翅的位置，但是无法交换到副手的鞘翅
-    private int getElytraIndex(List<ItemStack> inventory) {
-        for (int slot = 0; slot < inventory.size(); slot++) {
-            ItemStack stack = inventory.get(slot);
-
+    // 改造getElytraIndex函数，直接用player对象获取容器大小，进行遍历
+    private int getElytraIndex(LocalPlayer player) {
+        // for (int slot = 0; slot < inventory.size(); slot++) {
+        //     ItemStack stack = inventory.get(slot);
+        //
+        //     if (stack.getItem() == Items.ELYTRA) {
+        //         return slot;
+        //     }
+        // }
+        for (int slot = 0; slot < player.getInventory().getContainerSize(); slot++) {
+            ItemStack stack = player.getInventory().getItem(slot);
             if (stack.getItem() == Items.ELYTRA) {
                 return slot;
             }
@@ -124,15 +128,16 @@ public class MixinClientPlayerEntity extends AbstractClientPlayer {
         this.minecraft.gameMode.handleInventoryMouseClick(player.inventoryMenu.containerId, slotAMenu, 0, ClickType.PICKUP, player);
     }
 
-    private List<ItemStack> getCombinedInventory(LocalPlayer player) {
-        Inventory inventory = player.getInventory();
-        List<ItemStack> result = new ArrayList<>();
-        for (NonNullList<ItemStack> compartment : ImmutableList.of(inventory.items, inventory.armor, inventory.offhand)) {
-            result.addAll(compartment);
-        }
-
-        return result;
-    }
+    // 1.21.5之后，inventory.items无法访问，舍弃这个函数
+    // private List<ItemStack> getCombinedInventory(LocalPlayer player) {
+    //     Inventory inventory = player.getInventory();
+    //     List<ItemStack> result = new ArrayList<>();
+    //     for (NonNullList<ItemStack> compartment : ImmutableList.of(inventory.items, inventory.armor, inventory.offhand)) {
+    //         result.addAll(compartment);
+    //     }
+    //
+    //     return result;
+    // }
 
     // 判断是否可以起飞
     private boolean canStartFly(LocalPlayer player) {
