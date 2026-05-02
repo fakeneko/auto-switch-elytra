@@ -123,6 +123,11 @@ public abstract class MixinClientPlayerEntity extends AbstractClientPlayer {
 
     @Unique
     private boolean canStartFly(LocalPlayer player) {
-        return !player.onGround() && !player.isFallFlying() && !player.isInWater() && !player.hasEffect(MobEffects.LEVITATION);
+        return !player.onGround() &&  // 在地面
+                !player.isFallFlying() && // 飞行失败
+                !player.isInLiquid() && // 在流体里面
+                !player.hasEffect(MobEffects.LEVITATION) && // 缓降buff
+                !player.isPassenger() && // 骑乘状态
+                !player.isSleeping(); // 在睡觉
     }
 }
