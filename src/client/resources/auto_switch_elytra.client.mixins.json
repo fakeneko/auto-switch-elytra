@@ -1,0 +1,15 @@
+{
+	"required": true,
+	"package": "cn.com.fakeneko.client.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"MixinClientPlayerEntity",
+		"MixinArmorStandEntity"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}

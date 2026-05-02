@@ -1,0 +1,44 @@
+{
+	"schemaVersion": 1,
+	"id": "auto_switch_elytra",
+	"version": "${version}",
+	"name": "Auto Switch Elytra",
+	"description": "Automatically swaps between chestplate and elytra when falling.",
+	"authors": [
+		"fakeneko"
+	],
+	"contact": {
+		"homepage": "https://github.com/fakeneko/auto-switch-elytra"
+	},
+	"license": "MIT",
+	"icon": "assets/auto_switch_elytra/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"main": [
+			"cn.com.fakeneko.AutoSwitchElytra"
+		],
+		"client": [
+			"cn.com.fakeneko.client.Keybinds.FabricKeyBindings"
+		],
+		"modmenu": [
+			"cn.com.fakeneko.client.modmenu.FabricModmeunApi"
+		]
+	},
+	"mixins": [
+		{
+			"config": "auto_switch_elytra.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.2",
+		"minecraft": "~26.1",
+		"java": ">=25",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"cloth-config": "*",
+		"yet_another_config_lib_v3": "*",
+		"modmenu": "*"
+	}
+}

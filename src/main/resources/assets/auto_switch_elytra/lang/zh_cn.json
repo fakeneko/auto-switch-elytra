@@ -1,0 +1,16 @@
+{
+  "modmenu.nameTranslation.auto-switch-elytra": "不仅仅是自动切换鞘翅",
+  "modmenu.descriptionTranslation.auto-switch-elytra": "使MC再次伟大的二次方！（滑稽）",
+  "modmenu.summaryTranslation.auto-switch-elytra": "在空中时，自动切换切换上鞘翅",
+  "config.auto-switch-elytra.title": "自动切换鞘翅",
+  "config.enable.title": "启用",
+  "config.auto-switch-elytra.enabled": "启用自动切换鞘翅",
+  "config.enable.title.tooltip": "启用某些新特性或功能",
+  "config.auto-switch-elytra.enabled.description": "当你双击空格时，帮你自动切换鞘翅。\n但是如果你有tweakeroo模组，那么这个设置将不生效，并且你需要使用tweakeroo的自动切换鞘翅",
+  "config.armor-stand-interactive.disable": "禁用盔甲架交互",
+  "config.armor-stand-interactive.disable.description": "启用后，禁止玩家和盔甲架的交互",
+  "config.disable.title": "禁用",
+  "config.disable.title.tooltip": "禁用某些原版功能",
+  "key.category.auto_switch_elytra": "自动切换鞘翅",
+  "key.category.auto_switch_elytra.configuration": "打开自动切换鞘翅配置"
+}
