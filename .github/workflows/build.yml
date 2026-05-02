@@ -7,7 +7,7 @@ name: build & release
 on:
   push:
     tags:
-      - 'v*'   # 只有 push tag 才触发
+      - '*'   # 只有 push tag 才触发
 
 jobs:
   build:
