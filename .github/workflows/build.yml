@@ -4,6 +4,10 @@
 # against bad commits.
 
 name: build & release
+
+permissions:
+  contents: write   # ⭐ 关键：允许创建 release
+
 on:
   push:
     tags:
