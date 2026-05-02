@@ -3,8 +3,11 @@
 # certain platforms or Java versions, and provides a first line of defence
 # against bad commits.
 
-name: build
-on: [pull_request, push]
+name: build & release
+on:
+  push:
+    tags:
+      - 'v*'   # 只有 push tag 才触发
 
 jobs:
   build:
@@ -23,8 +26,19 @@ jobs:
         run: chmod +x ./gradlew
       - name: build
         run: ./gradlew build
-      - name: capture build artifacts
-        uses: actions/upload-artifact@v7
+      - name: create release
+        uses: softprops/action-gh-release@v2
         with:
-          name: Artifacts
-          path: build/libs/
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+          files: |
+            build/libs/*.jar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: capture build artifacts
+      #   uses: actions/upload-artifact@v7
+      #   with:
+      #     name: Artifacts
+      #     path: build/libs/
