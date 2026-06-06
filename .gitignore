@@ -23,5 +23,6 @@ eclipse
 run
 runs
 .claude
+.reasonix
 *.log
 hs_err_pid*

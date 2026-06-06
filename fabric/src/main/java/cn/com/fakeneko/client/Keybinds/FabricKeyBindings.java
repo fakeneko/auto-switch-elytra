@@ -1,6 +1,7 @@
 package cn.com.fakeneko.client.Keybinds;
 
 import cn.com.fakeneko.CommonClass;
+import cn.com.fakeneko.Constants;
 import cn.com.fakeneko.commonConfig.ScreenBuilder;
 import cn.com.fakeneko.commonConfig.ScreenBuilderYacl;
 import com.mojang.blaze3d.platform.InputConstants;
@@ -8,29 +9,64 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.minecraft.client.KeyMapping;
+import net.minecraft.client.Minecraft;
+import net.minecraft.resources.Identifier;
 import org.lwjgl.glfw.GLFW;
 
-import static net.minecraft.client.KeyMapping.Category.MISC;
-
 public class FabricKeyBindings implements ClientModInitializer {
+    private static final KeyMapping.Category ASE_CATEGORY = KeyMapping.Category.register(Identifier.parse(Constants.MOD_ID + ":category"));
+
     @Override
     public void onInitializeClient() {
-        KeyMapping binding1 = KeyMappingHelper.registerKeyMapping(
-                new KeyMapping("key.category.auto_switch_elytra.configuration",
+        // 主激活按键：按下此键打开配置界面（默认 ALT）
+        KeyMapping primaryKey = KeyMappingHelper.registerKeyMapping(
+                new KeyMapping("key.auto_switch_elytra.open_config",
                         InputConstants.Type.KEYSYM,
                         GLFW.GLFW_KEY_RIGHT_ALT,
-                        MISC));
+                        ASE_CATEGORY));
 
-        ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if (binding1.consumeClick()) {
-                if (CommonClass.isClothConfigLoaded()) {
-                    client.setScreen(ScreenBuilder.modScreen.makeScreen(client.screen));
-                    return;
-                }
-                if (CommonClass.isYaclLoaded()) {
-                    client.setScreen(ScreenBuilderYacl.modScreen.makeScreen(client.screen));
-                }
+        // 修饰键：默认未绑定；绑定后需按住主激活键再按它
+        KeyMapping modifierKey = KeyMappingHelper.registerKeyMapping(
+                new KeyMapping("key.auto_switch_elytra.modifier",
+                        InputConstants.Type.KEYSYM,
+                        GLFW.GLFW_KEY_UNKNOWN,
+                        ASE_CATEGORY));
+
+        ClientTickEvents.END_CLIENT_TICK.register(new ChordHandler(primaryKey, modifierKey));
+    }
+
+    private static class ChordHandler implements ClientTickEvents.EndTick {
+        private final KeyMapping primaryKey;
+        private final KeyMapping modifierKey;
+        private boolean prevModDown = false;
+
+        ChordHandler(KeyMapping primaryKey, KeyMapping modifierKey) {
+            this.primaryKey = primaryKey;
+            this.modifierKey = modifierKey;
+        }
+
+        @Override
+        public void onEndTick(Minecraft client) {
+            boolean modDown = modifierKey.isDown();
+            boolean modEdge = !prevModDown && modDown;
+            prevModDown = modDown;
+
+            boolean shouldOpen;
+            if (modifierKey.isUnbound()) {
+                // 修饰键未配置 → 单按主激活键即可
+                shouldOpen = primaryKey.consumeClick();
+            } else {
+                // 修饰键已配置 → 按住主激活键 + 按修饰键触发
+                shouldOpen = primaryKey.isDown() && modEdge;
             }
-        });
+
+            if (!shouldOpen) return;
+
+            if (CommonClass.isClothConfigLoaded()) {
+                client.setScreen(ScreenBuilder.modScreen.makeScreen(client.screen));
+            } else if (CommonClass.isYaclLoaded()) {
+                client.setScreen(ScreenBuilderYacl.modScreen.makeScreen(client.screen));
+            }
+        }
     }
 }
