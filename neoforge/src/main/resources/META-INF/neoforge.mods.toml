@@ -9,6 +9,8 @@ displayName="${mod_name}"
 authors="${mod_author}"
 description='''${description}'''
 logoFile="assets/${mod_id}/icon.png"
+displayURL="https://github.com/fakeneko/auto-switch-elytra"
+issueTrackerURL="https://github.com/fakeneko/auto-switch-elytra/issues"
 
 [[mixins]]
 config="${mod_id}.mixins.json"

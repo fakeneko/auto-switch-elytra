@@ -9,6 +9,11 @@
     ],
     "license": "${license}",
     "icon": "assets/${mod_id}/icon.png",
+    "contact": {
+        "homepage": "https://github.com/fakeneko/auto-switch-elytra",
+        "sources": "https://github.com/fakeneko/auto-switch-elytra",
+        "issues": "https://github.com/fakeneko/auto-switch-elytra/issues"
+    },
     "environment": "client",
     "entrypoints": {
         "main": [
