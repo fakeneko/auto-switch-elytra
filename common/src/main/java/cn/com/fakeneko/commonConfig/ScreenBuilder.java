@@ -4,6 +4,7 @@ import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
+import static cn.com.fakeneko.commonConfig.ConfigServices.KEYBINDING;
 import static cn.com.fakeneko.commonConfig.ModConfig.modConfig;
 
 public class ScreenBuilder {
@@ -22,6 +23,10 @@ public class ScreenBuilder {
         category_enable.addEntry(entryBuilder.startBooleanToggle(Component.translatable("config.auto-switch-elytra.enabled"), ModConfig.enabled_auto_switch_elytra.get())
                 .setDefaultValue(ModConfig.enabled_auto_switch_elytra.getDefault())
                 .setSaveConsumer(ModConfig.enabled_auto_switch_elytra::set)
+                .build()
+        );
+
+        category_enable.addEntry(entryBuilder.fillKeybindingField(Component.translatable("config.auto-switch-elytra.toggle_key"), KEYBINDING.getToggleKey())
                 .build()
         );
 

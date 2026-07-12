@@ -44,7 +44,7 @@ public class ModConfig {
         }
     }
 
-    void save() {
+    public void save() {
         try {
             Files.deleteIfExists(configFile);
             Map<String, Object> map = new HashMap<>();

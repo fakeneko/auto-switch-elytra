@@ -67,19 +67,22 @@ public abstract class MixinClientPlayerEntity extends AbstractClientPlayer {
             ordinal = 0))
     private void myFallFlyingJudge(CallbackInfo ci) {
         LocalPlayer player = (LocalPlayer) (Object) this;
+        boolean nowFallFlying = player.isFallFlying();
         if (!ModConfig.enabled_auto_switch_elytra.get()) {
+            prevFallFlying = nowFallFlying;
             return;
         }
         ItemStack chestItemStack = player.getItemBySlot(EquipmentSlot.CHEST);
-        if (chestItemStack.getItem() != Items.ELYTRA || !prevFallFlying || player.isFallFlying()) {
-            prevFallFlying = player.isFallFlying();
+        if (chestItemStack.getItem() != Items.ELYTRA || !prevFallFlying || nowFallFlying) {
+            prevFallFlying = nowFallFlying;
             return;
         }
 
         if (LAST_INDEX == -1) {
+            prevFallFlying = nowFallFlying;
             return;
         }
-        prevFallFlying = player.isFallFlying();
+        prevFallFlying = nowFallFlying;
         equipElytra(player, CHESTPLATE_INDEX, LAST_INDEX);
         LAST_INDEX = -1;
     }

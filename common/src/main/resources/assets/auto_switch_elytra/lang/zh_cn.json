@@ -7,11 +7,15 @@
   "config.auto-switch-elytra.enabled": "启用自动切换鞘翅",
   "config.enable.title.tooltip": "启用某些新特性或功能",
   "config.auto-switch-elytra.enabled.description": "当你双击空格时，帮你自动切换鞘翅。\n但是如果你有tweakeroo模组，那么这个设置将不生效，并且你需要使用tweakeroo的自动切换鞘翅",
+  "config.auto-switch-elytra.toggle_key": "切换开关按键",
   "config.armor-stand-interactive.disable": "禁用盔甲架交互",
   "config.armor-stand-interactive.disable.description": "启用后，禁止玩家和盔甲架的交互",
   "config.disable.title": "禁用",
   "config.disable.title.tooltip": "禁用某些原版功能",
   "key.category.auto_switch_elytra.category": "自动切换鞘翅",
   "key.auto_switch_elytra.open_config": "主激活按键",
-  "key.auto_switch_elytra.modifier": "修饰键（按住主激活键，再按此键触发）"
+  "key.auto_switch_elytra.modifier": "修饰键（按住主激活键，再按此键触发）",
+  "key.auto_switch_elytra.toggle": "切换自动切换鞘翅",
+  "message.auto_switch_elytra.enabled": "自动切换鞘翅：已开启",
+  "message.auto_switch_elytra.disabled": "自动切换鞘翅：已关闭"
 }

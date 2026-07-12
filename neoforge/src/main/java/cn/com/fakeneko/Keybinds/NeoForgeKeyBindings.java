@@ -2,11 +2,15 @@ package cn.com.fakeneko.Keybinds;
 
 import cn.com.fakeneko.CommonClass;
 import cn.com.fakeneko.Constants;
+import cn.com.fakeneko.commonConfig.ModConfig;
 import cn.com.fakeneko.commonConfig.ScreenBuilder;
 import cn.com.fakeneko.commonConfig.ScreenBuilderYacl;
 import com.mojang.blaze3d.platform.InputConstants;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
 import net.minecraft.resources.Identifier;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -22,6 +26,8 @@ public class NeoForgeKeyBindings {
     private static KeyMapping primaryKey;
     // 修饰键：默认未绑定；绑定后需按住主激活键再按它
     private static KeyMapping modifierKey;
+    // 切换自动切换鞘翅开关：按下直接切换 enabled_auto_switch_elytra，无需打开配置界面
+    public static KeyMapping toggleKey;
     private static boolean prevModDown = false;
 
     public static void register(final RegisterKeyMappingsEvent event) {
@@ -37,8 +43,15 @@ public class NeoForgeKeyBindings {
                 GLFW.GLFW_KEY_UNKNOWN,
                 ASE_CATEGORY
         );
+        toggleKey = new KeyMapping(
+                "key.auto_switch_elytra.toggle",
+                InputConstants.Type.KEYSYM,
+                GLFW.GLFW_KEY_UNKNOWN,
+                ASE_CATEGORY
+        );
         event.register(primaryKey);
         event.register(modifierKey);
+        event.register(toggleKey);
     }
 
     @SubscribeEvent
@@ -61,6 +74,25 @@ public class NeoForgeKeyBindings {
             client.gui.setScreen(ScreenBuilder.modScreen.makeScreen(client.gui.screen()));
         } else if (CommonClass.isYaclLoaded()) {
             client.gui.setScreen(ScreenBuilderYacl.modScreen.makeScreen(client.gui.screen()));
+        }
+    }
+
+    @SubscribeEvent
+    public static void onToggleTick(ClientTickEvent.Post e) {
+        if (toggleKey == null || !toggleKey.consumeClick()) return;
+
+        boolean newValue = !ModConfig.enabled_auto_switch_elytra.get();
+        ModConfig.enabled_auto_switch_elytra.set(newValue);
+        ModConfig.modConfig.save();
+
+        Minecraft client = Minecraft.getInstance();
+        if (client.player != null) {
+            String langKey = newValue
+                    ? "message.auto_switch_elytra.enabled"
+                    : "message.auto_switch_elytra.disabled";
+            ChatFormatting color = newValue ? ChatFormatting.GREEN : ChatFormatting.RED;
+            Component message = Component.translatable(langKey).withStyle(Style.EMPTY.withColor(color));
+            client.gui.hud.setOverlayMessage(message, false);
         }
     }
 }
