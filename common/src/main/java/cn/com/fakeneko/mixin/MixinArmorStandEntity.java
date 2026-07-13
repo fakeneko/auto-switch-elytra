@@ -16,7 +16,7 @@ public abstract class MixinArmorStandEntity {
 
     @Inject(method = "interact", at = @At(value = "HEAD"), cancellable = true)
     private void disableArmorStandInteract(Player player, InteractionHand hand, Vec3 hitPos, CallbackInfoReturnable<InteractionResult> cir) {
-        if (ModConfig.disable_armor_stand_interactive.get()) {
+        if (ModConfig.DISABLE_ARMOR_STAND_INTERACTIVE.get()) {
             cir.setReturnValue(InteractionResult.PASS);
         }
     }

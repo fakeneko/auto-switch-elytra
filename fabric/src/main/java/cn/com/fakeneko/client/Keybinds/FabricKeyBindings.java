@@ -1,26 +1,20 @@
 package cn.com.fakeneko.client.Keybinds;
 
-import cn.com.fakeneko.CommonClass;
 import cn.com.fakeneko.Constants;
 import cn.com.fakeneko.commonConfig.ModConfig;
-import cn.com.fakeneko.commonConfig.ScreenBuilder;
-import cn.com.fakeneko.commonConfig.ScreenBuilderYacl;
+import cn.com.fakeneko.config.impl.gui.ConfigScreen;
+import cn.com.fakeneko.config.impl.keybind.KeybindListener;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
 import net.minecraft.resources.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 public class FabricKeyBindings implements ClientModInitializer {
     private static final KeyMapping.Category ASE_CATEGORY = KeyMapping.Category.register(Identifier.parse(Constants.MOD_ID + ":category"));
-    // 切换自动切换鞘翅开关：按下直接切换 enabled_auto_switch_elytra，无需打开配置界面
-    public static KeyMapping toggleKey;
 
     @Override
     public void onInitializeClient() {
@@ -38,15 +32,12 @@ public class FabricKeyBindings implements ClientModInitializer {
                         GLFW.GLFW_KEY_UNKNOWN,
                         ASE_CATEGORY));
 
-        // 切换自动切换鞘翅开关：按下直接切换 enabled_auto_switch_elytra，无需打开配置界面
-        toggleKey = KeyMappingHelper.registerKeyMapping(
-                new KeyMapping("key.auto_switch_elytra.toggle",
-                        InputConstants.Type.KEYSYM,
-                        GLFW.GLFW_KEY_UNKNOWN,
-                        ASE_CATEGORY));
+        // 切换开关时显示 HUD 提示
+        ModConfig.ENABLED_AUTO_SWITCH_ELYTRA.hotkey().keybind().addListener(
+                KeybindListener.onPress(() -> ModConfig.showToggleMessage(Minecraft.getInstance(), ModConfig.ENABLED_AUTO_SWITCH_ELYTRA.get()))
+        );
 
         ClientTickEvents.END_CLIENT_TICK.register(new ChordHandler(primaryKey, modifierKey));
-        ClientTickEvents.END_CLIENT_TICK.register(new ToggleHandler());
     }
 
     private static class ChordHandler implements ClientTickEvents.EndTick {
@@ -76,31 +67,7 @@ public class FabricKeyBindings implements ClientModInitializer {
 
             if (!shouldOpen) return;
 
-            if (CommonClass.isClothConfigLoaded()) {
-                client.gui.setScreen(ScreenBuilder.modScreen.makeScreen(client.gui.screen()));
-            } else if (CommonClass.isYaclLoaded()) {
-                client.gui.setScreen(ScreenBuilderYacl.modScreen.makeScreen(client.gui.screen()));
-            }
-        }
-    }
-
-    private static class ToggleHandler implements ClientTickEvents.EndTick {
-        @Override
-        public void onEndTick(Minecraft client) {
-            if (toggleKey == null || !toggleKey.consumeClick()) return;
-
-            boolean newValue = !ModConfig.enabled_auto_switch_elytra.get();
-            ModConfig.enabled_auto_switch_elytra.set(newValue);
-            ModConfig.modConfig.save();
-
-            if (client.player != null) {
-                String langKey = newValue
-                        ? "message.auto_switch_elytra.enabled"
-                        : "message.auto_switch_elytra.disabled";
-                ChatFormatting color = newValue ? ChatFormatting.GREEN : ChatFormatting.RED;
-                Component message = Component.translatable(langKey).withStyle(Style.EMPTY.withColor(color));
-                client.gui.hud.setOverlayMessage(message, false);
-            }
+            client.gui.setScreen(new ConfigScreen(client.gui.screen(), ModConfig.MANAGER));
         }
     }
 }

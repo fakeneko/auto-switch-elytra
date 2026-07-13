@@ -48,7 +48,7 @@ public abstract class MixinClientPlayerEntity extends AbstractClientPlayer {
     private void onPlayerDoubleJump(CallbackInfo ci) {
         LocalPlayer player = (LocalPlayer) (Object) this;
 
-        if (!ModConfig.enabled_auto_switch_elytra.get()) {
+        if (!ModConfig.ENABLED_AUTO_SWITCH_ELYTRA.get()) {
             return;
         }
 
@@ -68,7 +68,7 @@ public abstract class MixinClientPlayerEntity extends AbstractClientPlayer {
     private void myFallFlyingJudge(CallbackInfo ci) {
         LocalPlayer player = (LocalPlayer) (Object) this;
         boolean nowFallFlying = player.isFallFlying();
-        if (!ModConfig.enabled_auto_switch_elytra.get()) {
+        if (!ModConfig.ENABLED_AUTO_SWITCH_ELYTRA.get()) {
             prevFallFlying = nowFallFlying;
             return;
         }

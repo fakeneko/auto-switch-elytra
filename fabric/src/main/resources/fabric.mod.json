@@ -37,8 +37,6 @@
         "java": ">=${java_version}"
     },
     "suggests": {
-        "cloth-config": "*",
-        "yet_another_config_lib_v3": "*",
         "modmenu": "*"
     }
 }

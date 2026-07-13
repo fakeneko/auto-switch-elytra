@@ -17,24 +17,39 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     steps:
-      - name: checkout repository
+      - name: checkout auto_switch_elytra
         uses: actions/checkout@v6
+        with:
+          path: auto_switch_elytra
+
+      - name: checkout fakeneko_config
+        uses: actions/checkout@v6
+        with:
+          repository: fakeneko/fakeneko_config
+          path: fakeneko_config
+
       - name: setup jdk
         uses: actions/setup-java@v5
         with:
           java-version: '25'
           distribution: 'microsoft'
+
       - name: setup gradle
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '9.5.0'
+
       - name: build
+        working-directory: ./auto_switch_elytra
         run: gradle build
+
       - name: collect release artifacts
+        working-directory: ./auto_switch_elytra
         run: |
           mkdir -p release
           cp fabric/build/libs/*fabric*[0-9].jar release/ 2>/dev/null || true
           cp neoforge/build/libs/*neoforge*[0-9].jar release/ 2>/dev/null || true
+
       - name: create release
         uses: softprops/action-gh-release@v2
         with:
@@ -42,6 +57,6 @@ jobs:
           name: Release ${{ github.ref_name }}
           draft: false
           prerelease: false
-          files: release/*.jar
+          files: auto_switch_elytra/release/*.jar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

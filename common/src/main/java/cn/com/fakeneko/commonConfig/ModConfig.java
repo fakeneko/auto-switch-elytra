@@ -1,65 +1,54 @@
 package cn.com.fakeneko.commonConfig;
 
-import cn.com.fakeneko.Constants;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import cn.com.fakeneko.config.api.ConfigCategory;
+import cn.com.fakeneko.config.api.ConfigManager;
+import cn.com.fakeneko.config.impl.ConfigManagerImpl;
+import cn.com.fakeneko.config.impl.keybind.InputKeys;
+import cn.com.fakeneko.config.impl.types.BooleanConfig;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.resources.Identifier;
 
 public class ModConfig {
-    public static final ModConfig modConfig = new ModConfig();
+    public static final ConfigManager MANAGER = new ConfigManagerImpl(
+            "auto_switch_elytra",
+            Component.translatable("config.auto-switch-elytra.title")
+    );
 
-    private static final List<ConfigOption<Object>> options = new ArrayList<>();
+    public static final ConfigCategory GENERAL = MANAGER.createCategory(
+            "general",
+            Component.translatable("config.auto-switch-elytra.title")
+    );
 
-    private final Path configFile = new File(ConfigServices.FILEPATH.getFilePath(), Constants.MOD_ID + ".json").toPath();
+    public static final BooleanConfig ENABLED_AUTO_SWITCH_ELYTRA
+            = new BooleanConfig("enabled_auto_switch_elytra", Component.translatable("config.auto-switch-elytra.enabled"), GENERAL, false)
+            .withHotkey(
+                    Component.translatable("config.auto-switch-elytra.enabled_hotkey"),
+                    Identifier.fromNamespaceAndPath("auto_switch_elytra", "toggle"),
+                    InputKeys.EMPTY
+            );
 
-    private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    public static final BooleanConfig DISABLE_ARMOR_STAND_INTERACTIVE
+            = new BooleanConfig("disable_armor_stand_interactive", Component.translatable("config.armor-stand-interactive.disable"), GENERAL, false);
 
-    public static ConfigOption<Boolean> enabled_auto_switch_elytra
-            = registerOption(new ConfigOption<>("enabled_auto_switch_elytra", false));
-
-    public static ConfigOption<Boolean> disable_armor_stand_interactive
-            = registerOption(new ConfigOption<>("disable_armor_stand_interactive", false));
-
-    public void load() {
-        try {
-            if (Files.notExists(configFile)) {
-                save();
-                return;
-            }
-            String data = Files.readString(configFile);
-            Map<?, ?> map = gson.fromJson(data, Map.class);
-            for (ConfigOption<Object> option : options) {
-                option.set(map.get(option.getName()));
-            }
-        } catch (IOException e) {
-            e.fillInStackTrace();
-        }
+    static {
+        MANAGER.load();
     }
 
-    public void save() {
-        try {
-            Files.deleteIfExists(configFile);
-            Map<String, Object> map = new HashMap<>();
-            for (ConfigOption<Object> option : options) {
-                map.put(option.getName(), option.get());
-            }
-            Files.writeString(configFile, gson.toJson(map));
-        } catch (IOException e) {
-            e.fillInStackTrace();
-        }
+    public static void init() {
     }
 
-    @SuppressWarnings("unchecked")
-    private static <T> ConfigOption<T> registerOption(ConfigOption<T> option) {
-        options.add((ConfigOption<Object>) option);
-        return option;
+    public static void showToggleMessage(Minecraft client, boolean newValue) {
+        if (client.player == null) {
+            return;
+        }
+        String langKey = newValue
+                ? "message.auto_switch_elytra.enabled"
+                : "message.auto_switch_elytra.disabled";
+        ChatFormatting color = newValue ? ChatFormatting.GREEN : ChatFormatting.RED;
+        Component message = Component.translatable(langKey).withStyle(Style.EMPTY.withColor(color));
+        client.gui.hud.setOverlayMessage(message, false);
     }
 }

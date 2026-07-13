@@ -43,16 +43,20 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     maven { url 'https://maven.shedaniel.me/' }
-    maven { url 'https://maven.isxander.dev/releases' }
-}
-
-dependencies {
-    implementation "me.shedaniel.cloth:cloth-config-neoforge:${cloth_config_version}"
-    compileOnly "dev.isxander:yet-another-config-lib:${yacl_version_neoforge}"
 }
 
 // Implement mcgradleconventions loader attribute
 def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)
+
+dependencies {
+    implementation('cn.com.fakeneko:fakeneko_config') {
+        attributes {
+            attribute(loaderAttribute, 'common')
+        }
+    }
+}
+
+// Implement mcgradleconventions loader attribute
 ['apiElements', 'runtimeElements', 'sourcesElements', 'javadocElements'].each { variant ->
     configurations.named(variant) {
         attributes {
