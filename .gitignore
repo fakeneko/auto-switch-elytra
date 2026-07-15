@@ -18,6 +18,7 @@ out
 # gradle
 build
 .gradle
+release
 
 # other
 eclipse

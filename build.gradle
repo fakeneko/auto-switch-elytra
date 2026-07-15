@@ -3,4 +3,29 @@ plugins {
     id 'net.fabricmc.fabric-loom' version '1.16.3' apply false
     // see https://projects.neoforged.net/neoforged/moddevgradle for new versions
     id 'net.neoforged.moddev' version '2.0.141' apply false
+    id 'base'
+}
+
+tasks.register('collectReleaseArtifacts', Copy) {
+    group = 'build'
+    description = 'Collects the fabric and neoforge loader jars into the release directory.'
+    dependsOn(':fabric:build', ':neoforge:build')
+    doFirst {
+        delete file("${rootProject.projectDir}/release")
+    }
+    from("${project(':fabric').buildDir}/libs") {
+        include "*.jar"
+        exclude "*sources*.jar"
+        exclude "*javadoc*.jar"
+    }
+    from("${project(':neoforge').buildDir}/libs") {
+        include "*.jar"
+        exclude "*sources*.jar"
+        exclude "*javadoc*.jar"
+    }
+    into file("${rootProject.projectDir}/release")
+}
+
+tasks.named('build') {
+    dependsOn('collectReleaseArtifacts')
 }

@@ -25,7 +25,7 @@ jobs:
       - name: checkout fakeneko_config
         uses: actions/checkout@v6
         with:
-          repository: fakeneko/fakeneko_config
+          repository: fakeneko/fakeneko-config
           path: fakeneko_config
 
       - name: setup jdk
